@@ -1,0 +1,57 @@
+######## Minimum Edit Distance Runtime Configuration File ##########
+# The parameters in this file are read in at program invocation to
+# control aspects of the input and output.
+
+# NOTE: All fields must be filled.  Leaving any field blank
+#       could lead to unexpected behavior!!!
+# NOTE: Names and passwords must begin with a capital or lowercase
+#       letter and may include only letters, numerals, hyphens ('-'),
+#       underscores ('_'), and periods ('.').
+
+
+# Input db criteria:
+# The program calculates the edit distance between each entry
+# in input_col against every other entry.  input_separator is
+# what is written to the out_origcol and out_destcol columns.
+Input_db
+    dbname=v22_data
+    hostaddr=127.0.0.1
+    port=5432
+    user=bokinsky
+    connect_timeout=10
+    password=pgadmin
+    table=task_import
+    input_col=name
+    input_separator=id
+
+
+# Output db criteria:
+# Clobber switch determines whether the program overwrites any
+# existing _table_ in _dbname_ (clobber=True) or appends its
+# output to any existing _table_ (clobber=False).
+Output_db
+    dbname=v22_data
+    hostaddr=127.0.0.1
+    port=5432
+    user=bokinsky
+    connect_timeout=10
+    password=pgadmin
+    table=task_edits
+    out_origcol=orig_id
+    out_destcol=dest_id
+    clobber=True            # overwrite existing table? True/False
+
+
+# edit_range may be of the following forms:
+#    Note: in range forms, no space is permitted between
+#          numerals and range delimiters ('-', ',').
+#    1: 'edit_range=x'     --> edits 0-x inclusive recorded
+#    2: 'edit_range=x-y'   --> edits x-y inclusive recorded
+#    3: 'edit_range=x,y,z' --> edits x, y, and z recorded
+#                              Any number of desired edits may be requested,
+#                              so long as each one is separated by commas,
+#                              with no intermittent space and no leading or
+#                              trailing commas.
+edit_range=5
+
+
